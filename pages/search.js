@@ -3,6 +3,7 @@ import Footer from "../Components/Footer"
 import Header from "../Components/Header"
 import {format} from "date-fns"
 import InfoCards from "../Components/infoCards";
+import Map from "../Components/Map";
 
 function Search({searchResults}){
 
@@ -11,7 +12,7 @@ function Search({searchResults}){
     const {location, startDate, endDate, noOfGuests} =router.query;
     const formattedStartDate = format(new Date(startDate), "dd MMM yy");
     const formattedEndDate = format(new Date(endDate), "dd MMM yy");
-    const range = `${formattedStartDate}- ${formattedEndDate}`;
+    const range = `${formattedStartDate} to  ${formattedEndDate}`;
 
 
     return(
@@ -20,7 +21,7 @@ function Search({searchResults}){
             <main className="flex">
                 <section className="flex-grow pt-14 px-6 ">
                     <p className="text-xs">
-                        300+ Stays -{range}- for {noOfGuests} number of guests
+                        300+ Stays-{range}-for {noOfGuests} number of guests
                     </p>
                     <h1 className="text-3xl font-semibold mt-2 mb-6">Stays in {location}</h1>
                     <div className=" hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap ">
@@ -57,6 +58,9 @@ function Search({searchResults}){
 
                     </div>
                   
+                </section>
+                <section className="hidden xl:inline-flex xl:min-w-[600px]">
+                    <Map searchResults={searchResults}/>
                 </section>
 
             </main>
